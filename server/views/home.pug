@@ -1,0 +1,39 @@
+doctype html
+html
+	include ./includes/head.pug
+	body
+		h1 Hello, #{username}! 
+		a(href='/logout') (Logout)
+		hr
+		div(class='uk-panel uk-panel-box')
+			ul(class='uk-nav uk-nav-side')
+				li(class='uk-parent')
+					div Api
+					ul(class='uk-nav-sub')
+						li(class='uk-parent')
+							div Users
+								ul(class='uk-nav-sub')
+									li
+										a(href='/api/users/create') Create ('/api/users/create')
+									li
+										a(href='/api/users/list') List all ('/api/users/list')
+									li
+										a(href='/api/users/edit') Edit ('/api/users/edit')
+									li
+										a(href='/api/users/delete') Delete ('/api/users/delete')
+									li
+										a(href='/api/users/deleteAll') //Delete all ('/api/users/deleteAll')
+									li
+										a(href='/api/users/init') Init ('/api/users/init')
+						li(class='uk-parent')
+							div Photos
+								ul(class='uk-nav-sub')
+									li
+										a(href='/api/photos/download') Download
+									li
+										a(href='/api/photos/list') List
+									li
+										a(href='/api/photos/upload') Upload
+									li
+										a(href='/api/photos/delete') Delete
+

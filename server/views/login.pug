@@ -1,0 +1,15 @@
+doctype html
+html
+	include ./includes/head.pug
+	body
+		div(class='uk-grid')
+			form(action='/login' method='post' class='uk-align-center uk-form uk-form-stacked uk-form')
+				div(class='uk-form-row')
+					label(for='username') Username: 
+					input(name='username' type='text' class='uk-input')
+				div(class='uk-form-row')
+					label(for='password') Password: 
+					input(name='password' type='password' class='uk-input')
+				div(class='uk-form-row')
+					input(type='submit' value='Submit' class='uk-button uk-align-center')
+
