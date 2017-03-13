@@ -2,7 +2,7 @@
 	"name": "server",
 	"version": "1.0.0",
 	"scripts": {
-		"dev": "nodemon --debug --exec babel-node debug server.js",
+		"dev": "nodemon --debug --exec babel-node server.js",
 		"db": "cd .. && mongod.exe --config database/config/mongo.conf"
 	},
 	"dependencies": {
