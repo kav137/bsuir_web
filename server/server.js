@@ -1,58 +1,26 @@
 import express from 'express';
-import passport from 'passport';
-import bodyParser from 'body-parser';
-import expressSession from 'express-session';
-import cookieParser from 'cookie-parser';
 import connect from 'connect-ensure-login';
-import auth from './services/authenticationService.js';
-import db from './services/dbConnectionService.js';
-import models from './models/index';
+import authService from './services/authenticationService.js';
+import dbService from './services/dbConnectionService.js';
+import configureApp from './config';
+import { secureRouter, publicRouter } from './routes';
 
-db.init();
-auth.init();
+dbService.init();
+authService.init();
 
 let app = express();
+configureApp(app);
 
-app.use(express.static(__dirname + '/public'));
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(expressSession({ secret: 'pokemon', resave: true, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.get('/fail', (req, res) => {
-	res.status(403);
-	res.json({ error: 'illegal credentials provided' });
-});
-
-app.post('/login', passport.authenticate('local', {
-	failureRedirect: '/fail'
-}), (req, res) => {
-	if (req.user) {
-		res.json({ token: req.user._id });
+app.get('/error', (req, res) => {
+	if (req.statusCode) {
+		res.status(req.statusCode);
 	}
+	let error = req.error || 'unknown error';
+	res.json({ error });
 });
 
-app.get('/login', (req, res) => {
-	res.sendFile(__dirname + '/public/login.html');
-});
-
-// app.get('/', (req, res, next) => {
-// 	console.log('\nhello\n');
-// 	next();
-// }, connect.ensureLoggedIn('/login'), (req, res) => {
-// 	res.json({ main: 'success' });
-// });
-
-
-
-// app.get('/read', (req, res, next) => {
-// 	models.user.getAllData().then((result) => {
-// 		res.json(result);
-// 	}).catch((err) => {
-// 		res.json({ error: 1 });
-// 	});
-// });
+app.use(publicRouter);
+app.use(connect.ensureLoggedIn(), secureRouter);
 
 // app.get('/delete', (req, res, next) => {
 // 	models.user.deleteAll().then((result) => {
@@ -71,5 +39,5 @@ app.get('/login', (req, res) => {
 // });
 
 app.listen(3001, () => {
-	console.log('server successfully started');
+	console.log('Server is running on the port 3001');
 });
