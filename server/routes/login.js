@@ -8,7 +8,7 @@ router.route('/login')
 		res.render('login');
 	})
 	.post(passport.authenticate('local'), (req, res) => {
-		res.redirect('/home');
+		res.json({ token: req.user._id });
 	});
 
 export default router;
