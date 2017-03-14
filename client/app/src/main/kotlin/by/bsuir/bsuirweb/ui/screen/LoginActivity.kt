@@ -27,16 +27,21 @@ class LoginActivity : AppCompatActivity() {
                     .observeOn(AndroidSchedulers.mainThread())
                     .applyOnStartAndFinish(
                             onStart = {
-                                authorizeView.isEnabled = false },
+                                authorizeView.isEnabled = false
+                            },
                             onFinish = {
-                                authorizeView.isEnabled = true }
+                                authorizeView.isEnabled = true
+                            }
                     )
                     .subscribe(
                             {
-                                token -> showSnackbarMessage(token.value) },
+                                token ->
+                                startActivity(PhotosActivity.getIntent(this))
+                            },
                             { error ->
                                 Log.e("", "test", error)
-                                showSnackbarMessage("Вы ввели неправильный логин или пароль") }
+                                showSnackbarMessage("Вы ввели неправильный логин или пароль")
+                            }
                     )
         }
     }

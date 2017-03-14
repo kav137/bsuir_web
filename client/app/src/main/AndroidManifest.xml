@@ -1,6 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="by.bsuir.bsuirweb">
-<uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -8,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="by.bsuir.bsuirweb.ui.screen.LoginActivity" android:label="Авторизация">
+        <activity
+            android:name="by.bsuir.bsuirweb.ui.screen.LoginActivity"
+            android:label="Авторизация">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -18,7 +24,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.screen.PhotosActivity" android:label="Фотографии"/>
+        <activity
+            android:name=".ui.screen.PhotosActivity"
+            android:label="Фотографии"/>
 
 
         <provider
