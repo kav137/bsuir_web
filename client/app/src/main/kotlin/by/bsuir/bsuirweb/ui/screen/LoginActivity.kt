@@ -6,6 +6,7 @@ import android.util.Log
 import by.bsuir.bsuirweb.R
 import by.bsuir.bsuirweb.core.backend.Api
 import by.bsuir.bsuirweb.core.backend.entity.Token
+import by.bsuir.bsuirweb.core.settings.Settings
 import by.bsuir.bsuirweb.extensions.applyOnStartAndFinish
 import by.bsuir.bsuirweb.extensions.showSnackbarMessage
 import io.reactivex.ObservableTransformer
@@ -36,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
                     .subscribe(
                             {
                                 token ->
+                                Settings.saveToken(this, token.value)
                                 startActivity(PhotosActivity.getIntent(this))
                             },
                             { error ->
