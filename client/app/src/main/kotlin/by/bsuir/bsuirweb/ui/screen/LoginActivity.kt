@@ -1,4 +1,4 @@
-package by.bsuir.bsuirweb.ui
+package by.bsuir.bsuirweb.ui.screen
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

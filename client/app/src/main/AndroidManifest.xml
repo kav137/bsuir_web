@@ -8,7 +8,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="by.bsuir.bsuirweb.ui.LoginActivity">
+        <activity android:name="by.bsuir.bsuirweb.ui.screen.LoginActivity" android:label="Авторизация">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -17,6 +17,8 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.screen.PhotosActivity" android:label="Фотографии"/>
     </application>
 
 </manifest>
